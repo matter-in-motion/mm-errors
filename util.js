@@ -51,13 +51,22 @@ let handler = function(error, ret, cb) {
 }
 
 let resHandler = function(error, ret, cb) {
+  if (typeof ret === 'function') {
+    cb = ret;
+    ret = undefined;
+  }
+
+  if (typeof error === 'function') {
+    cb = error;
+    error = undefined;
+  }
+
   if (typeof error === 'string') {
     error = errors[error];
   }
 
-  if (typeof ret === 'function') {
-    cb = ret;
-    ret = undefined;
+  if (!error) {
+    error = errors.Call;
   }
 
   return function(result) {
