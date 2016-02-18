@@ -62,8 +62,11 @@ module.exports = {
   ResponseEncode,
   UnsupportedMedia,
   MethodNotFound,
+  ChannelNotFound,
 
   Duplicate,
-  NotFound
+  NotFound,
+
+  ServerError
 };
 
