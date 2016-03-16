@@ -27,6 +27,7 @@ const Call                = mmError(4000, 'Error'); //general error to return fr
 
 //auth errors
 const Unauthorized        = mmError(4100, 'Unauthorized');
+const ProviderNotFound    = mmError(4104, 'Auth provider not found');
 const Forbidden           = mmError(4110, 'Forbidden');
 const NotValidToken       = mmError(4120, 'Token not valid or expired');
 
