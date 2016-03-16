@@ -1,6 +1,6 @@
 {
   "name": "mmp-errors",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "MMP (matter in motion protocol) errors",
   "keywords": [
     "api",
