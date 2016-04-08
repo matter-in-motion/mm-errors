@@ -54,6 +54,7 @@ module.exports = {
   Error: mmError,
   Call,
   Unauthorized,
+  ProviderNotFound,
   Forbidden,
   NotValidToken,
   RequestValidation,

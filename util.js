@@ -2,19 +2,15 @@
 const errors = require('./errors');
 
 let isEmpty = function(something) {
-  if (!something) {
+  if (something === undefined || something === '' || (something !== null && typeof something === 'object' && !Object.keys(something).length)) {
     return true;
   }
-  return typeof something === 'object' && !Object.keys(something).length;
+
+  return false;
 };
 
 
-let handler = function(error, ret, cb) {
-  if (typeof ret === 'function') {
-    cb = ret;
-    ret = undefined;
-  }
-
+let handler = function(error, cb) {
   if (typeof error === 'function') {
     cb = error;
     error = undefined;
@@ -35,14 +31,7 @@ let handler = function(error, ret, cb) {
       } else {
         cb(error(err));
       }
-    } else if (ret !== undefined) {
-      let retType = typeof ret;
-      if (retType === 'string' || retType === 'number') {
-        cb(null, result[ret]);
-      } else {
-        cb(null, result);
-      }
-    } else if (isEmpty(result) && error) {
+    } else if (isEmpty(result)) {
       cb(error());
     } else {
       cb(null, result);
@@ -50,12 +39,7 @@ let handler = function(error, ret, cb) {
   };
 }
 
-let resHandler = function(error, ret, cb) {
-  if (typeof ret === 'function') {
-    cb = ret;
-    ret = undefined;
-  }
-
+let resHandler = function(error, cb) {
   if (typeof error === 'function') {
     cb = error;
     error = undefined;
@@ -70,14 +54,7 @@ let resHandler = function(error, ret, cb) {
   }
 
   return function(result) {
-    if (ret !== undefined) {
-      let retType = typeof ret;
-      if (retType === 'string' || retType === 'number') {
-        cb(null, result[ret]);
-      } else {
-        cb(null, result);
-      }
-    } else if (isEmpty(result) && error) {
+    if (isEmpty(result) && error) {
       cb(error());
     } else {
       cb(null, result);
