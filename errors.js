@@ -66,6 +66,7 @@ module.exports = {
   UnsupportedMedia,
   MethodNotFound,
   ChannelNotFound,
+  SubscriptionNotFound,
 
   Duplicate,
   NotFound,
