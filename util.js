@@ -2,7 +2,12 @@
 const errors = require('./errors');
 
 let isEmpty = function(something) {
-  if (something === undefined || something === '' || (something !== null && typeof something === 'object' && !Object.keys(something).length)) {
+  if (
+    something === undefined ||
+    something === false ||
+    something === '' ||
+    (something !== null && typeof something === 'object' && !Object.keys(something).length)
+  ) {
     return true;
   }
 
