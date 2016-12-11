@@ -41,8 +41,6 @@ const UnsupportedMedia      = mmError(4250, 'Unsupported media');
 
 //call errors
 const MethodNotFound        = mmError(4400, 'Method not found');
-const ChannelNotFound       = mmError(4410, 'Channel not found');
-const SubscriptionNotFound  = mmError(4420, 'Subscription not found');
 
 //response errors
 const Duplicate             = mmError(4500, 'Duplicate entity');
@@ -65,8 +63,6 @@ module.exports = {
   ResponseEncode,
   UnsupportedMedia,
   MethodNotFound,
-  ChannelNotFound,
-  SubscriptionNotFound,
 
   Duplicate,
   NotFound,
