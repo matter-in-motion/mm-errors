@@ -1,7 +1,7 @@
 {
-  "name": "mmp-errors",
-  "version": "0.8.4",
-  "description": "MMP (matter in motion protocol) errors",
+  "name": "mm-errors",
+  "version": "1.0.0",
+  "description": "Matter in motion errors",
   "keywords": [
     "api",
     "microservice",
@@ -21,7 +21,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/velocityzen/mmp-errors"
+    "url": "https://github.com/matter-in-motion/mm-errors"
   },
   "main": "./index.js"
 }

@@ -1,6 +1,6 @@
-#Matter in motion protocol error codes
+## Matter In Motion. Error Codes
 
-More info about [matter in motion](http://https://github.com/velocityzen/matter-in-motion)
+More info about [matter in motion](http://https://github.com/matter-in-motion/mm)
 
 ## Errors codes:
 
@@ -22,7 +22,7 @@ More info about [matter in motion](http://https://github.com/velocityzen/matter-
 
 ## Usage
 ```js
-let errors = require('mmp-errors');
+const errors = require('mm-errors');
 //when you need to return an error:
 return errors.NotFound();
 //or
@@ -39,8 +39,8 @@ You can add any data and/or message to errors;
 
 ## Custom errors
 ```js
-let errors = require('mmp-errors');
-let CustomError = errors.Error(code, msg, toString);
+const errors = require('mm-errors');
+const CustomError = errors.Error(code, msg, toString);
 
 //and then you can use it
 return CustomError();
@@ -52,8 +52,5 @@ throw CustomError();
 * **message** — default message
 * **toString** — optional toString function
 
-License MIT
 
-
-
-
+License: MIT.
