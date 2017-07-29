@@ -13,9 +13,5 @@ logs
 results
 
 npm-debug.log
-
-lib/settings/dev.js
-app/settings/dev.js
-static/uploads
 .DS_Store
-node_modules/
+node_modules
