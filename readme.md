@@ -1,6 +1,6 @@
 ## Matter In Motion. Error Codes
 
-More info about [matter in motion](http://https://github.com/matter-in-motion/mm)
+Common errors for [Matter in Motion](http://https://github.com/matter-in-motion/mm) protocol
 
 ## Errors codes:
 
