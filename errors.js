@@ -48,6 +48,7 @@ const NotFound              = mmError(4540, 'Not found');
 
 //server errors
 const ServerError           = mmError(5000, 'Server error');
+const NetworkError          = mmError(5100, 'Network error');
 
 module.exports = {
   Error: mmError,
@@ -67,6 +68,7 @@ module.exports = {
   Duplicate,
   NotFound,
 
-  ServerError
+  ServerError,
+  NetworkError
 };
 
