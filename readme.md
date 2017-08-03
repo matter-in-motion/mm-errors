@@ -19,6 +19,7 @@ Common errors for [Matter in Motion](http://https://github.com/matter-in-motion/
 * **4500** Duplicate — duplicate entity
 * **4540** NotFound — not found
 * **5000** ServerError — server error
+* **5100** NetworkError — network error
 
 ## Usage
 ```js
