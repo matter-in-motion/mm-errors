@@ -1,7 +1,7 @@
 'use strict';
 
-let mmError = function(code, msg, toString) {
-  return function(data, message) {
+const mmError = function(code, msg) {
+  return function(error, message) {
     let err = new Error();
     err.code = code;
     err.message = msg;
@@ -10,12 +10,8 @@ let mmError = function(code, msg, toString) {
       err.message += '. ' + message;
     }
 
-    if (data) {
-      err.data = data;
-    }
-
-    if (toString) {
-      err.toString = toString;
+    if (error) {
+      err.data = error.data || error;
     }
 
     return err;
