@@ -1,5 +1,8 @@
 ## Matter In Motion. Error Codes
 
+[![NPM Version](https://img.shields.io/npm/v/mm-errors.svg?style=flat-square)](https://www.npmjs.com/package/mm-errors)
+[![NPM Downloads](https://img.shields.io/npm/dt/mm-errors.svg?style=flat-square)](https://www.npmjs.com/package/mm-errors)
+
 Common errors for [Matter in Motion](http://https://github.com/matter-in-motion/mm) protocol
 
 ## Errors codes:
