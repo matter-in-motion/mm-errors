@@ -1,7 +1,19 @@
 'use strict';
 const errors = require('./errors');
 
-let isEmpty = function(something) {
+const getError = function(error) {
+  if (typeof error === 'string') {
+    error = errors[error];
+  }
+
+  if (!error) {
+    error = errors.Call;
+  }
+
+  return error;
+};
+
+const isEmpty = function(something) {
   if (
     something === undefined ||
     something === false ||
@@ -15,77 +27,57 @@ let isEmpty = function(something) {
 };
 
 
-let handler = function(error, cb) {
-  if (typeof error === 'function') {
-    cb = error;
-    error = undefined;
-  }
+const ifEmpty = function(error) {
+  error = getError(error);
 
-  if (typeof error === 'string') {
-    error = errors[error];
-  }
-
-  if (!error) {
-    error = errors.Call;
-  }
-
-  return function(err, result) {
-    if (err) {
-      if (err.code) {
-        cb(err);
-      } else {
-        cb(error(err));
-      }
-    } else if (isEmpty(result)) {
-      cb(error());
-    } else {
-      cb(null, result);
+  return result => {
+    if (isEmpty(result)) {
+      throw error();
     }
+
+    return result;
   };
-}
+};
 
-let resHandler = function(error, cb) {
-  if (typeof error === 'function') {
-    cb = error;
-    error = undefined;
-  }
+const ifError = function(error) {
+  error = getError(error);
 
-  if (typeof error === 'string') {
-    error = errors[error];
-  }
-
-  if (!error) {
-    error = errors.Call;
-  }
-
-  return function(result) {
-    if (isEmpty(result) && error) {
-      cb(error());
-    } else {
-      cb(null, result);
+  return err => {
+    if (err.code) {
+      throw err;
     }
+
+    throw error(err);
   };
-}
+};
 
-let errHandler = function(error, cb) {
-  if (!cb) {
-    cb = error;
-    error = undefined;
-  } else if (typeof error === 'string') {
-    error = errors[error];
-  }
+const ifInstanceThen = function(cls, error) {
+  error = getError(error);
 
-  if (!error) {
-    error = errors.Call;
-  }
+  return err => {
+    if (err instanceof cls) {
+      throw error();
+    }
 
-  return function(err) {
-    cb(error(err));
+    throw err;
   };
-}
+};
+
+const ifCodeThen = function(code, error) {
+  error = getError(error);
+
+  return err => {
+    if (err.code === code) {
+      throw error();
+    }
+
+    throw err;
+  };
+};
 
 module.exports = {
-  handler,
-  result: resHandler,
-  error: errHandler
+  ifEmpty,
+  ifError,
+  ifInstanceThen,
+  ifCodeThen
 };

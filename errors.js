@@ -11,7 +11,11 @@ const mmError = function(code, msg) {
     }
 
     if (error) {
-      err.data = error.data || error;
+      if (error.message) {
+        err.message += ': ' + error.message;
+      } else {
+        err.data = error.data || error;
+      }
     }
 
     return err;
