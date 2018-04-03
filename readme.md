@@ -15,9 +15,12 @@ Common errors for [Matter in Motion](http://https://github.com/matter-in-motion/
 * **4200** RequestValidation — request validation failed
 * **4210** ResponseValidation — response validation failed
 * **4220** RequestTooLarge — request entity too large
-* **4230** RequestDecode — request decode error
+* **4230** RequestEncode — request encode error
+* **4235** RequestDecode — request decode error
 * **4240** ResponseEncode — response encode error
+* **4245** ResponseDecode — response decode error
 * **4250** UnsupportedMedia — unsupported media
+* **4255** NoFilesInRequest — no files found in request
 * **4400** MethodNotFound — method not found
 * **4500** Duplicate — duplicate entity
 * **4540** NotFound — not found
@@ -57,4 +60,4 @@ throw CustomError();
 * **toString** — optional toString function
 
 
-License: MIT.
+License: MIT

@@ -35,9 +35,12 @@ const NotValidToken         = mmError(4120, 'Token not valid or expired');
 const RequestValidation     = mmError(4200, 'Request validation failed');
 const ResponseValidation    = mmError(4210, 'Response validation failed');
 const RequestTooLarge       = mmError(4220, 'Request entity too large');
-const RequestDecode         = mmError(4230, 'Request decode error');
+const RequestEncode         = mmError(4230, 'Request encode error');
+const RequestDecode         = mmError(4235, 'Request decode error');
 const ResponseEncode        = mmError(4240, 'Response encode error');
+const ResponseDecode        = mmError(4245, 'Response decode error');
 const UnsupportedMedia      = mmError(4250, 'Unsupported media');
+const NoFilesInRequest      = mmError(4255, 'No files found in request');
 
 //call errors
 const MethodNotFound        = mmError(4400, 'Method not found');
@@ -61,8 +64,12 @@ module.exports = {
   ResponseValidation,
   RequestTooLarge,
   RequestDecode,
+  RequestEncode,
   ResponseEncode,
+  ResponseDecode,
   UnsupportedMedia,
+  NoFilesInRequest,
+
   MethodNotFound,
 
   Duplicate,
