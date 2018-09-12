@@ -1,25 +1,23 @@
 'use strict';
 
-const mmError = function(code, msg) {
-  return function(error, message) {
-    let err = new Error();
-    err.code = code;
-    err.message = msg;
+const mmError = (code, msg) => (error, message) => {
+  let err = new Error();
+  err.code = code;
+  err.message = msg;
 
-    if (message) {
-      err.message += '. ' + message;
-    }
-
-    if (error) {
-      if (error.message) {
-        err.message += ': ' + error.message;
-      } else {
-        err.data = error.data || error;
-      }
-    }
-
-    return err;
+  if (message) {
+    err.message += '. ' + message;
   }
+
+  if (error) {
+    if (error.message) {
+      err.message += ': ' + error.message;
+    } else {
+      err.data = error.data || error;
+    }
+  }
+
+  return err;
 }
 
 //generic error
