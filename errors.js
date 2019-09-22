@@ -61,14 +61,14 @@ const genericErrors = Object.entries(errors).reduce((exp, [ name, value ]) => {
   return exp;
 }, {})
 
-const errorCodes = Object.entries(errors).reduce((exp, [ name, value ]) => {
+const Errors = Object.entries(errors).reduce((exp, [ name, value ]) => {
   exp[name] = value.code;
   return exp;
 }, {})
 
 module.exports = {
   Error: MMError,
-  errorCodes,
+  Errors,
   ...genericErrors
 };
 
