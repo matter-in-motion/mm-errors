@@ -1,7 +1,7 @@
 'use strict';
 
 const mmError = function(code, msg) {
-  return function(error, message) {
+  return function MMError(error, message) {
     let err = new Error();
     err.code = code;
     err.message = msg;
@@ -22,60 +22,53 @@ const mmError = function(code, msg) {
   }
 }
 
-//generic error
-const Call                  = mmError(4000, 'Error'); //general error to return from your methods
+const errors = {
+////general error to return from your methods
+  Call: { code: 4000, message: 'Error' },
 
-//auth errors
-const Unauthorized          = mmError(4100, 'Unauthorized');
-const ProviderNotFound      = mmError(4104, 'Auth provider not found');
-const Forbidden             = mmError(4110, 'Forbidden');
-const NotValidToken         = mmError(4120, 'Token not valid or expired');
+  //auth errors
+  Unauthorized: { code: 4100, message: 'Unauthorized' },
+  ProviderNotFound: { code: 4104, message: 'Auth provider not found' },
+  Forbidden: { code: 4110, message: 'Forbidden' },
+  NotValidToken: { code: 4120, message: 'Token vnot alid or expired' },
 
-//validation errors
-const RequestValidation     = mmError(4200, 'Request validation failed');
-const ResponseValidation    = mmError(4210, 'Response validation failed');
-const RequestTooLarge       = mmError(4220, 'Request entity too large');
-const RequestEncode         = mmError(4230, 'Request encode error');
-const RequestDecode         = mmError(4235, 'Request decode error');
-const ResponseEncode        = mmError(4240, 'Response encode error');
-const ResponseDecode        = mmError(4245, 'Response decode error');
-const UnsupportedMedia      = mmError(4250, 'Unsupported media');
-const NoFilesInRequest      = mmError(4255, 'No files found in request');
+  //validation errors
+  RequestValidation: { code: 4200, message: 'Request validation failed' },
+  ResponseValidation: { code: 4210, message: 'Response validation failed' },
+  RequestTooLarge: { code: 4220, message: 'Request entity too large' },
+  RequestEncode: { code: 4230, message: 'Request encode error' },
+  RequestDecode: { code: 4235, message: 'Request decode error' },
+  ResponseEncode: { code: 4240, message: 'Response encode error' },
+  ResponseDecode: { code: 4245, message: 'Response decode error' },
+  UnsupportedMedia: { code: 4250, message: 'Unsupported media' },
+  NoFilesInRequest: { code: 4255, message: 'No files found in the request' },
 
-//call errors
-const MethodNotFound        = mmError(4400, 'Method not found');
+  //call errors
+  MethodNotFound: { code: 4400, message: 'Method not found' },
 
-//response errors
-const Duplicate             = mmError(4500, 'Duplicate entity');
-const NotFound              = mmError(4540, 'Not found');
+  //response errors
+  Duplicate: { code: 4500, message: 'Duplicate entity' },
 
-//server errors
-const ServerError           = mmError(5000, 'Server error');
-const NetworkError          = mmError(5100, 'Network error');
+  NotFound: { code: 4540, message: 'Not found' },
+
+  //server errors
+  ServerError: { code: 5000, message: 'Server error' },
+  NetworkError: { code: 5100, message: 'Network error' }
+}
+
+const genericErrors = Object.entries(errors).reduce((exp, [ name, value ]) => {
+  exp[name] = mmError(value.code, value.message);
+  return exp;
+}, {})
+
+const errorCodes = Object.entries(errors).reduce((exp, [ name, value ]) => {
+  exp[name] = value.code;
+  return exp;
+}, {})
 
 module.exports = {
   Error: mmError,
-  Call,
-  Unauthorized,
-  ProviderNotFound,
-  Forbidden,
-  NotValidToken,
-  RequestValidation,
-  ResponseValidation,
-  RequestTooLarge,
-  RequestDecode,
-  RequestEncode,
-  ResponseEncode,
-  ResponseDecode,
-  UnsupportedMedia,
-  NoFilesInRequest,
-
-  MethodNotFound,
-
-  Duplicate,
-  NotFound,
-
-  ServerError,
-  NetworkError
+  errorCodes,
+  ...genericErrors
 };
 

@@ -1,7 +1,7 @@
 'use strict';
 const errors = require('./errors');
 
-const getError = function(error) {
+function getError(error) {
   if (typeof error === 'string') {
     error = errors[error];
   }
@@ -11,9 +11,9 @@ const getError = function(error) {
   }
 
   return error;
-};
+}
 
-const isEmpty = function(something) {
+function isEmpty(something) {
   if (
     something === undefined ||
     something === false ||
@@ -24,10 +24,10 @@ const isEmpty = function(something) {
   }
 
   return false;
-};
+}
 
 
-const ifEmpty = function(error) {
+function ifEmpty(error) {
   error = getError(error);
 
   return result => {
@@ -36,10 +36,10 @@ const ifEmpty = function(error) {
     }
 
     return result;
-  };
-};
+  }
+}
 
-const ifError = function(error) {
+function ifError(error) {
   error = getError(error);
 
   return err => {
@@ -48,10 +48,10 @@ const ifError = function(error) {
     }
 
     throw error(err);
-  };
-};
+  }
+}
 
-const ifInstanceThen = function(cls, error) {
+function ifInstanceThen(cls, error) {
   error = getError(error);
 
   return err => {
@@ -60,10 +60,10 @@ const ifInstanceThen = function(cls, error) {
     }
 
     throw err;
-  };
-};
+  }
+}
 
-const ifCodeThen = function(code, error) {
+function ifCodeThen(code, error) {
   error = getError(error);
 
   return err => {
@@ -72,12 +72,12 @@ const ifCodeThen = function(code, error) {
     }
 
     throw err;
-  };
-};
+  }
+}
 
 module.exports = {
   ifEmpty,
   ifError,
   ifInstanceThen,
   ifCodeThen
-};
+}
