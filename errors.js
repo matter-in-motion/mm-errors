@@ -1,8 +1,8 @@
 'use strict';
 
-const mmError = function(code, msg) {
+function MMError(code, msg) {
   return function MMError(error, message) {
-    let err = new Error();
+    const err = new Error();
     err.code = code;
     err.message = msg;
 
@@ -57,7 +57,7 @@ const errors = {
 }
 
 const genericErrors = Object.entries(errors).reduce((exp, [ name, value ]) => {
-  exp[name] = mmError(value.code, value.message);
+  exp[name] = MMError(value.code, value.message);
   return exp;
 }, {})
 
@@ -67,7 +67,7 @@ const errorCodes = Object.entries(errors).reduce((exp, [ name, value ]) => {
 }, {})
 
 module.exports = {
-  Error: mmError,
+  Error: MMError,
   errorCodes,
   ...genericErrors
 };

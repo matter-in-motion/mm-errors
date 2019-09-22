@@ -43,7 +43,7 @@ function ifError(error) {
   error = getError(error);
 
   return err => {
-    if (err.code) {
+    if (typeof err.code === 'number') {
       throw err;
     }
 
